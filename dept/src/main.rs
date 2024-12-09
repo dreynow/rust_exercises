@@ -15,7 +15,7 @@ fn main() {
         
         let mut choice = String::new();
         
-        io::stdin.read_line(&mut choice).expect("Failed to read input");
+        io::stdin().read_line(&mut choice).expect("Failed to read input");
         let choice = choice.trim();
         
         match choice {
@@ -26,7 +26,7 @@ fn main() {
                 println!("Exiting...");
                 break
             }
-            _ => println!("Invalid choice. Please try again");
+            _ => println!("Invalid choice. Please try again"),
         }
     
 

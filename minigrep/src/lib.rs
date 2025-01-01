@@ -1,12 +1,17 @@
 
 use std::fs;
 use std::error::Error;
+use std::env;
 
 pub struct Config {
     pub query: String,
     pub filepath: String,
     pub ignore_case: bool,
 }
+
+
+// the function takes in the query and the filepath that was pass in to the CLI
+// also handles the error by checking if the words or arguments that was pass in to the CLI is not less than 3
 
 impl Config {
     pub fn build(words: &[String]) -> Result<Config, &'static str> {
@@ -20,10 +25,12 @@ impl Config {
 
         let ignore_case = env::var("IGNORE_CASE").is_ok();
     
-        Ok(Config {query, filepath})
+        Ok(Config {query, filepath,ignore_case})
     }
 }
 
+// the run function is there to check if the query that was passed into the CLI
+// is in the filepath that was passed into the CLI
 pub fn run(con: Config) -> Result<(), Box<dyn Error>>{
     let content = fs::read_to_string(con.filepath)?;
 
